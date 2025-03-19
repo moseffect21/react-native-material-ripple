@@ -264,7 +264,7 @@ export default class Ripple extends PureComponent {
 
     return (
       <TouchableWithoutFeedback {...touchableProps}>
-        <Animated.View {...props} pointerEvents='box-only'>
+        <Animated.View {...props}>
           {children}
           <View style={[styles.container, containerStyle]}>
             {ripples.map(this.renderRipple)}
