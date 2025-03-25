@@ -258,15 +258,18 @@ export default class Ripple extends PureComponent {
       ...('web' !== Platform.OS? { nativeID } : null),
     };
 
+    const hasRipple = !!this.state.ripples.length
+
     let containerStyle = {
       borderRadius: rippleContainerBorderRadius,
+      zIndex: hasRipple ? 1 : 0
     };
 
     return (
       <TouchableWithoutFeedback {...touchableProps}>
-        <Animated.View {...props}>
+        <Animated.View {...{pointerEvents: "box-only", ...props}}>
           {children}
-          <View style={[styles.container, containerStyle]}>
+          <View pointerEvents="none" style={[styles.container, containerStyle]}>
             {ripples.map(this.renderRipple)}
           </View>
         </Animated.View>
